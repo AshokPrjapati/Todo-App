@@ -3,6 +3,8 @@ const cors = require("cors");
 
 const connection = require('./config/db.config'); // Import the database connection
 const authRouter = require("./routes/auth.routes");
+const todosRouter = require("./routes/todos.routes");
+const authenticate = require("./middleware/authenticate")
 
 require("dotenv").config();
 
@@ -18,6 +20,9 @@ app.get("/", (req, res) => {
 
 // authentication
 app.use("/auth", authRouter);
+
+// todo route
+app.use("/todo", authenticate, todosRouter);
 
 // Wildcard route for handling unknown routes
 app.get("*", (req, res) => {
