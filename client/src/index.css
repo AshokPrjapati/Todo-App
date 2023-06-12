@@ -3,13 +3,20 @@
   line-height: 1.5;
   font-weight: 400;
 
-  --primary-theme-color-black: #0f0f0f;
-  --primary-theme-color-red: #ad241b;
-  --primary-text-color-unknown: #3a3a3c;
-  --primary-text-color-white: #e8e8e8;
+  --c-black: #0f0f0f;
+  --c-red: #ad241b;
+  --c-gray: #3a3a3c;
+  --c-white: #e8e8e8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  background-color: var(--primary-theme-color-black);
+  background-color: var(--c-black);
+  color: var(--c-white);
 }

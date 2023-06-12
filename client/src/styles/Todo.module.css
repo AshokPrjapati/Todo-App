@@ -1,0 +1,13 @@
+.container {
+    width: max-content;
+    margin: auto;
+    padding: 2rem;
+}
+
+.heading {
+    font-size: 2rem;
+    padding: 1rem 0;
+    color: var(--c-red);
+    font-weight: 700;
+    text-align: center;
+}
