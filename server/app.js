@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 });
 
 // authentication
-app.get("/auth", authRouter);
+app.use("/auth", authRouter);
 
 // Wildcard route for handling unknown routes
 app.get("*", (req, res) => {

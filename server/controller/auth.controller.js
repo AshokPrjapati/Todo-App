@@ -1,4 +1,4 @@
-const UserModel = require("../model/user.model");
+const UserModel = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -40,9 +40,10 @@ exports.signin = async (req, res) => {
             bcrypt.compare(pass, user.pass, (err, result) => {
                 if (result) {
                     let token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY);
-                    // delete password before the user details in response
-                    delete user.pass;
-                    res.status(200).send({ message: "Login Success", token, user });
+                    // Create a new object without the "pass" property
+                    const userWithoutPassword = { ...user._doc };
+                    delete userWithoutPassword.pass;
+                    res.status(200).send({ message: "Login Success", token, user: userWithoutPassword });
                 } else {
                     res.status(401).send({ message: "Wrong Password" }); // unauthorized
                 }

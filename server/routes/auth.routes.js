@@ -3,7 +3,7 @@ const { signup, signin } = require("../controller/auth.controller");
 const authRouter = express.Router();
 
 // signup and signin route
-authRouter.post("/register", signup);
-authRouter.post("/register", signin);
+authRouter.post("/signup", signup);
+authRouter.post("/signin", signin);
 
 module.exports = authRouter;
