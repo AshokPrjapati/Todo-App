@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 
 const connection = require('./config/db.config'); // Import the database connection
+const authRouter = require("./routes/auth.routes");
 
 require("dotenv").config();
 
@@ -15,6 +16,8 @@ app.get("/", (req, res) => {
     res.send("Home Page");
 });
 
+// authentication
+app.get("/auth", authRouter);
 
 // Wildcard route for handling unknown routes
 app.get("*", (req, res) => {
