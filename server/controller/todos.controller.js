@@ -19,7 +19,7 @@ exports.getUsersTodos = async (req, res) => {
     const { userId } = req.body;
     try {
         const todos = await TodoModel.find({ userId }); // Retrieve todos for the given userId
-        res.status(200).json(todos);
+        res.status(200).json({ todos });
     } catch (e) {
         console.log(e);
         res.send({ error: e.message });
