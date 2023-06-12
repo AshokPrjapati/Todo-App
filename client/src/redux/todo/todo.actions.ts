@@ -10,6 +10,7 @@ export const createTodo = (todo:ITodo) => async(dispatch:Dispatch<any>)=>{
     try {
         await axios.post("/todo/add",todo);
         dispatch({type:Types.TODO_ADD_SUCCESS});
+        dispatch(getUserTodos());
         alert("Todo added successfully");
     } catch (error:any) {
         console.log(error);
