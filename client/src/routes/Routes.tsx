@@ -10,7 +10,6 @@ const Routes = () => {
             <Route path="/" element={<PrivateRoute><Todo /></PrivateRoute>} />
             <Route path="/signin" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
         </AllRoutes>
     )
 }

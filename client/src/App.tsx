@@ -1,9 +1,11 @@
-import Todo from "./components/todo/Todo"
+import Navbar from "./components/Navbar"
+import Routes from "./routes/Routes"
 
 function App() {
   return (
     <div>
-      <Todo />
+      <Navbar />
+      <Routes />
     </div>
   )
 }

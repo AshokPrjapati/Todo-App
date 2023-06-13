@@ -1,5 +1,5 @@
 
-import styles from "../../styles/todoInput.module.css";
+import styles from "../../styles/todo/todoInput.module.css";
 
 interface TodoInputProps {
     placeholder: string

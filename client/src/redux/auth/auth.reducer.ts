@@ -7,6 +7,7 @@ const initialState: AuthInitialStateProps = {
   signin_loading: false,
   signin_error: false,
   user: null,
+  isAuth: false,
 };
 
 export const reducer = (
@@ -23,7 +24,7 @@ export const reducer = (
     case Types.SIGNIN_LOADING:
       return { ...state, signin_loading: true };
     case Types.SIGNIN_SUCCESS:
-      return { ...state, signin_loading: false, user: payload };
+      return { ...state, signin_loading: false, user: payload, isAuth:true };
     case Types.SIGNIN_ERROR:
       return { ...state, signin_error: true, signin_loading: false };
     default:

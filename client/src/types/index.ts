@@ -12,6 +12,7 @@ export interface AuthInitialStateProps {
    signup_loading: boolean,
    signup_error : boolean,
    user : SafeUser | null,
+   isAuth:boolean
 }
 
 export interface SafeUser{

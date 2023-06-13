@@ -4,9 +4,12 @@
   font-weight: 400;
 
   --c-black: #0f0f0f;
+  --c-white: #FFF;
+
   --c-red: #ad241b;
-  --c-gray: #3a3a3c;
-  --c-white: #e8e8e8;
+  --c-purple: #023562;
+  --c-orange: #FF6D38;
+  --c-green: #18A160;
 }
 
 * {

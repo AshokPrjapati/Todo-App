@@ -1,0 +1,29 @@
+.small_button {
+    padding: .3rem .8rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.default_button {
+    padding: .5rem 1rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.default_button,
+.small_button {
+    border-radius: .5rem;
+    border: 2px solid var(--c-red);
+    color: var(--c-red);
+    cursor: pointer;
+    transition: .2s ease;
+    background-color: inherit;
+    user-select: none;
+}
+
+.default_button:hover,
+.small_button:hover {
+    background-color: var(--c-red);
+    color: #fff;
+    scale: 1.1;
+}
