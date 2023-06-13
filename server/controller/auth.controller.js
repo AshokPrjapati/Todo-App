@@ -10,13 +10,13 @@ exports.signup = async (req, res) => {
     try {
         // Check if the user already exists
         let user = await UserModel.findOne({ email: payload.email });
-        if (user) return res.status(409).send({ message: "User already exists" }); //   conflict in request
+        if (user) return res.status(409).send({ error: "User already exists" }); //   conflict in request
 
         // Hash the password
         const saltRounds = 5; // number of salt rounds for stronger encryption
         const hashedPassword = await bcrypt.hash(payload.pass, saltRounds);
         if (hashedPassword) payload.pass = hashedPassword;
-        else return res.status(500).send({ message: "Something went wrong" });
+        else return res.status(500).send({ error: "Something went wrong" });
 
         // Create a new user with the hashed password
         let newUser = new UserModel(payload);
@@ -45,11 +45,11 @@ exports.signin = async (req, res) => {
                     delete userWithoutPassword.pass;
                     res.status(200).send({ message: "Login Success", token, user: userWithoutPassword });
                 } else {
-                    res.status(401).send({ message: "Wrong Password" }); // unauthorized
+                    res.status(401).send({ error: "Wrong Password" }); // unauthorized
                 }
             });
         } else {
-            res.status(401).send({ message: "Wrong Credentials" }); // unauthorized
+            res.status(401).send({ error: "Wrong Credentials" }); // unauthorized
         }
     } catch (e) {
         console.log(e);

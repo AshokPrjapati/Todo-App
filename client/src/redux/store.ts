@@ -1,7 +1,8 @@
 import { legacy_createStore, applyMiddleware, compose, combineReducers } from "redux";
 import thunk from "redux-thunk";
 
-import {reducer as todoReducer} from "./todo/todo.reducer"
+import {reducer as todoManager} from "./todo/todo.reducer"
+import {reducer as authManager} from "./auth/auth.reducer"
 
 // Declare a global interface to extend the Window object
 declare global {
@@ -14,7 +15,7 @@ declare global {
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 // Combine reducers
-const RootReducers = combineReducers({todoManager : todoReducer});
+const RootReducers = combineReducers({todoManager, authManager});
 
 // Create the Redux store 
 export const store = legacy_createStore(
