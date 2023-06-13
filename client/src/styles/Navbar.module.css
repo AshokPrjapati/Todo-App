@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    box-shadow: 0 5px 5px rgba(245, 212, 212, 0.5);
+    box-shadow: 0 2px 5px var(--c-red);
 }
 
 .logo {
