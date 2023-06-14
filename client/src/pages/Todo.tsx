@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react"
+import { useState } from "react"
 
 import Button from "../components/Button"
 import TodosContainer from "../components/todo/TodosContainer"
@@ -10,6 +10,7 @@ import { Dispatch } from "redux"
 import { createTodo } from "../redux/todo/todo.actions"
 import { RootState } from "../redux/store"
 import { ITodo } from "../types"
+import TodoSearch from "../components/todo/TodoSearch"
 
 const Todo = () => {
     const [todo, setTodo] = useState<ITodo>({ title: "", description: "" });
@@ -43,6 +44,7 @@ const Todo = () => {
             <div style={{ textAlign: "center", margin: "1rem 0" }}>
                 <Button label="Add Todo" small action={handelTodo} />
             </div>
+            <TodoSearch />
             <TodosContainer />
         </div>
 

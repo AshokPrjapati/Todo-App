@@ -85,3 +85,23 @@ export const deleteTodo = (id:string, token:string)=> async(dispatch:Dispatch<an
         dispatch({type:Types.TODO_DELETE_ERROR})
     }
 }
+
+// get search todo
+export const searchTodos = (query:string,token :string)=> async(dispatch:Dispatch<any>) =>{
+    dispatch({type: Types.TODO_SEARCH_LOADING});
+
+    // request header
+    const headers = {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json", 
+    };
+
+    try {
+        const res = await axios(`/todo/search?s=${query}`, {headers});
+        const data = res.data;
+        dispatch({type:Types.TODO_SEARCH_SUCCESS, payload:data.todos});
+    } catch (error) {
+        console.log(error);
+        dispatch({type:Types.TODO_SEARCH_ERROR})
+    }
+}

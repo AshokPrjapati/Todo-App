@@ -1,5 +1,5 @@
 const express = require("express");
-const { createTodo, editTodo, deleteTodo, getUsersTodos } = require("../controller/todos.controller");
+const { createTodo, editTodo, deleteTodo, getUsersTodos, searchTodo } = require("../controller/todos.controller");
 
 // todos router
 const todosRouter = express.Router();
@@ -16,5 +16,7 @@ todosRouter.delete("/delete/:id", deleteTodo);
 // get user todos route
 todosRouter.get("/user", getUsersTodos);
 
+// search todos
+todosRouter.get("/search", searchTodo);
 
 module.exports = todosRouter;

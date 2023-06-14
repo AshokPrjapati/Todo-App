@@ -44,6 +44,15 @@ export const reducer = (state=initialState,{type,payload}:any)=>{
             return { ...state, isDeleting: false}
         case Types.TODO_DELETE_ERROR : 
             return { ...state, isDeleting: false}
+        
+        // search todos
+        case Types.TODO_SEARCH_LOADING : 
+            return { ...state, isFetching: true}
+        case Types.TODO_SEARCH_SUCCESS : 
+            return { ...state, isFetching: false, todos:payload}
+        case Types.TODO_SEARCH_ERROR : 
+            return { ...state, isFetching: false}
+
         default: return state
     }
 }

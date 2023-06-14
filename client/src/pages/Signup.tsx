@@ -4,7 +4,7 @@ import Button from "../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "redux";
-import { login, signup } from "../redux/auth/auth.action";
+import { signup } from "../redux/auth/auth.action";
 import { RootState } from "../redux/store";
 
 const Signup = () => {

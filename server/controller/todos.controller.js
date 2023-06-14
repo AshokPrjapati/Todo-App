@@ -49,3 +49,22 @@ exports.deleteTodo = async (req, res) => {
         res.send({ error: e.message });
     }
 }
+
+
+// search todo
+exports.searchTodo = async (req, res) => {
+    const searchTerm = req.query.s;
+    try {
+        const todos = await TodoModel.find({
+            $or: [
+                { title: { $regex: searchTerm, $options: "i" } },
+                { description: { $regex: searchTerm, $options: "i" } }
+            ]
+        });
+
+        res.status(200).json({ todos });
+    } catch (e) {
+        console.log(e);
+        res.send({ error: e.message });
+    }
+};

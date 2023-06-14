@@ -17,3 +17,8 @@ export const TODO_EDIT_SUCCESS = "todo/edit/success";
 export const TODO_DELETE_LOADING = "todo/delete/loading";
 export const TODO_DELETE_ERROR = "todo/delete/error";
 export const TODO_DELETE_SUCCESS = "todo/delete/success";
+
+// search types
+export const TODO_SEARCH_LOADING = "todo/search/loading";
+export const TODO_SEARCH_ERROR = "todo/search/error";
+export const TODO_SEARCH_SUCCESS = "todo/search/success";
