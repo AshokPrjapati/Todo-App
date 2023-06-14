@@ -1,10 +1,10 @@
 import { useRef } from "react";
 import styles from "../styles/auth.module.css";
 import Button from "../components/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "redux";
-import { login } from "../redux/auth/auth.action";
+import { login, signup } from "../redux/auth/auth.action";
 import { RootState } from "../redux/store";
 
 const Signup = () => {
@@ -16,6 +16,8 @@ const Signup = () => {
 
     const dispatch: Dispatch<any> = useDispatch();
 
+    const navigate = useNavigate();
+
     // handle submission
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -25,11 +27,11 @@ const Signup = () => {
         console.log(email, name, pass)
 
         if (email && pass && name) {
-            if (pass.length <= 6) return alert("Password length must be alteast 6");
+            if (pass.length < 6) return alert("Password length must be alteast 6");
             if (!email.includes("@") || !email.includes(".com")) {
                 return alert("Invalid email")
             }
-            dispatch(login({ name, email, pass }));
+            dispatch(signup({ name, email, pass }, navigate));
 
             // reset form fields
             emailRef.current.value = "";
@@ -55,7 +57,7 @@ const Signup = () => {
                     <input type="password" id="password" ref={passRef} placeholder="Enter password" required />
                 </div>
                 <div className={styles.button}>
-                    <Button type="submit" label="Signup" small disabled={signup_loading} />
+                    <Button type="submit" label="Signup" small disabled={signup_loading} isLoading={signup_loading} loadingText="Signup..." />
                     <div>
                         <div>Already have an account?</div>
                         <Link to="/signin">login</Link>

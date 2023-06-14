@@ -5,12 +5,19 @@ import { ITodo } from "../../types";
 import * as Types from "./todo.actionTypes";
 
 // create todo
-export const createTodo = (todo:ITodo) => async(dispatch:Dispatch<any>)=>{
+export const createTodo = (todo:ITodo, token:string) => async(dispatch:Dispatch<any>)=>{
     dispatch({type:Types.TODO_ADD_LOADING});
+    
+    // request header
+    const headers = {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json", 
+    };
+
     try {
-        await axios.post("/todo/add",todo);
+        await axios.post("/todo/add",todo, {headers});
         dispatch({type:Types.TODO_ADD_SUCCESS});
-        dispatch(getUserTodos());
+        dispatch(getUserTodos(token));
         alert("Todo added successfully");
     } catch (error:any) {
         console.log(error);
@@ -19,10 +26,17 @@ export const createTodo = (todo:ITodo) => async(dispatch:Dispatch<any>)=>{
 }
 
 // get all single user todo
-export const getUserTodos = ()=> async(dispatch:Dispatch<any>) =>{
+export const getUserTodos = (token :string)=> async(dispatch:Dispatch<any>) =>{
     dispatch({type: Types.TODO_GET_LOADING});
+
+    // request header
+    const headers = {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json", 
+    };
+
     try {
-        const res = await axios("/todo/user");
+        const res = await axios("/todo/user", {headers});
         const data = res.data;
         dispatch({type:Types.TODO_GET_SUCCESS, payload:data.todos});
     } catch (error) {
@@ -32,23 +46,40 @@ export const getUserTodos = ()=> async(dispatch:Dispatch<any>) =>{
 }
 
 // update todo
-export const updateTodo = (id:string, data:ITodo)=> async(dispatch:Dispatch<any>) =>{
+export const updateTodo = (id:string, data:ITodo, token:string)=> async(dispatch:Dispatch<any>) =>{
     dispatch({type: Types.TODO_EDIT_LOADING});
+
+     // request header
+     const headers = {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json", 
+    };
+
     try {
-        await axios.patch(`/todo/edit/${id}`,data);
+        await axios.patch(`/todo/edit/${id}`,data, {headers});
         dispatch({type:Types.TODO_EDIT_SUCCESS});
+        dispatch(getUserTodos(token));
     } catch (error) {
         console.log(error);
-        dispatch({type:Types.TODO_EDIT_ERROR})
+        dispatch({type:Types.TODO_EDIT_ERROR});
+        dispatch(getUserTodos(token));
     }
 }
 
 // delete todo
-export const deleteTodo = (id:string)=> async(dispatch:Dispatch<any>) =>{
+export const deleteTodo = (id:string, token:string)=> async(dispatch:Dispatch<any>) =>{
     dispatch({type: Types.TODO_DELETE_LOADING});
+
+     // request header
+     const headers = {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json", 
+    };
+
     try {
-        await axios.delete(`/todo/delete/${id}`);
+        await axios.delete(`/todo/delete/${id}`, {headers});
         dispatch({type:Types.TODO_DELETE_SUCCESS});
+        dispatch(getUserTodos(token));
     } catch (error) {
         console.log(error);
         dispatch({type:Types.TODO_DELETE_ERROR})

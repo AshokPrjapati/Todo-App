@@ -5,7 +5,9 @@ interface ButtonProps {
     label: string,
     action?: () => void,
     small?: boolean,
-    disabled?: boolean
+    disabled?: boolean,
+    isLoading?: boolean,
+    loadingText?: string
 }
 
 const Button = ({
@@ -14,6 +16,8 @@ const Button = ({
     action,
     small,
     disabled = false,
+    isLoading = false,
+    loadingText = label
 }: ButtonProps) => {
     return (
         <button
@@ -22,7 +26,7 @@ const Button = ({
             onClick={action}
             disabled={disabled}
         >
-            {label}
+            {isLoading ? loadingText : label}
         </button>
     );
 };

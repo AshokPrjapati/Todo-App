@@ -1,8 +1,8 @@
-import { InitialStateProps } from "../../types"
+import { TodoInitialStateProps } from "../../types"
 import * as Types from "./todo.actionTypes"
 
 
-const initialState:InitialStateProps = {
+const initialState:TodoInitialStateProps = {
     isAdding : false,
     isFetching : false,
     isUpdating : false,

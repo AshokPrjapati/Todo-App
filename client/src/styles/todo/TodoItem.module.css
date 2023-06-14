@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    border: 1px solid var(--c-red);
+    padding: .5rem 1rem;
+    align-items: center;
+    border-radius: .5rem;
+    background-color: var(--c-black);
+    box-shadow: 0 1px 3px var(--c-red);
+}
+
+
+.container>div {
+    display: flex;
+    gap: 1rem;
+    font-size: 1.1rem;
+}

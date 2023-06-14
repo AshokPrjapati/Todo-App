@@ -2,13 +2,17 @@
 import styles from "../../styles/todo/todoInput.module.css";
 
 interface TodoInputProps {
-    placeholder: string
+    placeholder: string,
+    value?: string,
+    name?: string,
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const TodoInput = ({ placeholder }: TodoInputProps) => {
+const TodoInput = ({ placeholder, value, name, onChange }: TodoInputProps) => {
+
     return (
         <div className={styles.container}>
-            <input placeholder={placeholder} type="text" />
+            <input placeholder={placeholder} type="text" name={name} onChange={onChange} value={value} />
         </div>
     )
 }

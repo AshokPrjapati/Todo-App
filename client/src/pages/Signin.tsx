@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import styles from "../styles/auth.module.css";
 import Button from "../components/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "redux";
 import { login } from "../redux/auth/auth.action";
@@ -15,19 +15,20 @@ const Signin = () => {
 
     const dispatch: Dispatch<any> = useDispatch();
 
+    const navigate = useNavigate();
+
     // handle submission
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const email = emailRef?.current?.value;
         const pass = passRef?.current?.value;
-        console.log(email, pass)
 
         if (email && pass) {
-            if (pass.length <= 6) return alert("Password length must be alteast 6");
+            if (pass.length < 6) return alert("Password length must be alteast 6");
             if (!email.includes("@") || !email.includes(".com")) {
                 return alert("Invalid email")
             }
-            dispatch(login({ email, pass }));
+            dispatch(login({ email, pass }, navigate));
             emailRef.current.value = "";
             passRef.current.value = "";
         }
@@ -46,7 +47,7 @@ const Signin = () => {
                     <input type="password" id="password" ref={passRef} placeholder="Enter password" required />
                 </div>
                 <div className={styles.button}>
-                    <Button type="submit" label="Signin" small disabled={signin_loading} />
+                    <Button type="submit" label="Signin" small disabled={signin_loading} isLoading={signin_loading} loadingText="Signin..." />
                     <div>
                         <div>Don't have an account?</div>
                         <Link to="/signup">Create here</Link>

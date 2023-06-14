@@ -2,15 +2,19 @@
     padding: .5rem 1rem;
     border: 1px solid var(--c-red);
     border-radius: 1rem;
-    box-shadow: 0 3px 5px rgba(149, 50, 50, 0.5);
+    box-shadow: 0 1px 3px var(--c-red);
     margin: .8rem;
 }
 
 .container>input {
-    width: max-content;
     background-color: transparent;
     border: none;
     outline: none;
     color: var(--c-white);
     font-size: 1.1rem;
+}
+
+.container>input:focus {
+    outline: none;
+    background-color: transparent;
 }
